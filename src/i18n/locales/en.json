@@ -358,6 +358,8 @@
     "tip": {
       "webdavTitle": "Enable WebDAV Management Required",
       "webdavMessage": "Before mounting remotes, please ensure WebDAV management for specific user is enabled in OpenList Core.",
+      "winfspTitle": "WinFSP Installation Required",
+      "winfspMessage": "On Windows, you need to install WinFSP first to use mount functionality. Please download and install it from GitHub: https://github.com/winfsp/winfsp/releases",
       "dismissForever": "Dismiss forever"
     }
   },

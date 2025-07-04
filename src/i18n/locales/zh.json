@@ -358,6 +358,8 @@
     "tip": {
       "webdavTitle": "需要启用 WebDAV 管理功能",
       "webdavMessage": "在挂载远程存储之前，请确保在 OpenList 核心中为用户启用了 WebDAV 管理功能",
+      "winfspTitle": "需要安装 WinFSP",
+      "winfspMessage": "在 Windows 系统上，您需要先安装 WinFSP 才能使用挂载功能。请从 GitHub 下载并安装：https://github.com/winfsp/winfsp/releases",
       "dismissForever": "永久关闭"
     }
   },

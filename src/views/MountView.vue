@@ -330,6 +330,21 @@ const dismissWebdavTip = () => {
   localStorage.setItem('webdav_tip_dismissed', 'true')
 }
 
+const isWindows = /win/i.test(navigator.platform) || /win/i.test(navigator.userAgent)
+const showWinfspTip = ref(isWindows && !localStorage.getItem('winfsp_tip_dismissed'))
+
+const dismissWinfspTip = () => {
+  showWinfspTip.value = false
+  localStorage.setItem('winfsp_tip_dismissed', 'true')
+}
+
+const shouldShowWebdavTip = computed(() => {
+  if (isWindows) {
+    return !showWinfspTip.value && showWebdavTip.value
+  }
+  return showWebdavTip.value
+})
+
 onMounted(async () => {
   document.addEventListener('keydown', handleKeydown)
   await rcloneStore.checkRcloneBackendStatus()
@@ -408,7 +423,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div v-if="showWebdavTip" class="webdav-tip">
+    <div v-if="shouldShowWebdavTip" class="webdav-tip">
       <div class="tip-content">
         <div class="tip-icon">
           <Settings class="icon" />
@@ -418,6 +433,21 @@ onUnmounted(() => {
           <p class="tip-description">{{ t('mount.tip.webdavMessage') }}</p>
         </div>
         <button @click="dismissWebdavTip" class="tip-close" :title="t('mount.tip.dismissForever')">
+          <X class="close-icon" />
+        </button>
+      </div>
+    </div>
+
+    <div v-if="showWinfspTip" class="winfsp-tip">
+      <div class="tip-content">
+        <div class="tip-icon">
+          <HardDrive class="icon" />
+        </div>
+        <div class="tip-message">
+          <h4 class="tip-title">{{ t('mount.tip.winfspTitle') }}</h4>
+          <p class="tip-description">{{ t('mount.tip.winfspMessage') }}</p>
+        </div>
+        <button @click="dismissWinfspTip" class="tip-close" :title="t('mount.tip.dismissForever')">
           <X class="close-icon" />
         </button>
       </div>
